@@ -1,4 +1,4 @@
-from consoleapp.commands.base import BaseCommand
+from snippy.commands.base import BaseCommand
 
 
 class Parser:

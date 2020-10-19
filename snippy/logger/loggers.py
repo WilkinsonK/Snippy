@@ -10,11 +10,11 @@ from logging import NullHandler
 from typing import Any
 from typing import Dict
 
-from consoleapp.exceptions.conf import ConfigAttrError
-from consoleapp.exceptions.conf import ConfigPathError
-from consoleapp.exceptions.conf import ConfigValueError
+from snippy.exceptions.conf import ConfigAttrError
+from snippy.exceptions.conf import ConfigPathError
+from snippy.exceptions.conf import ConfigValueError
 
-from consoleapp.logger.levels import Level
+from snippy.logger.levels import Level
 
 
 class AppLogger(Logger):

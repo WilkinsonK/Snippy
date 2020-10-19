@@ -1,5 +1,5 @@
 from logging import StreamHandler
-from consoleapp.logger.levels import DEBUG
+from snippy.logger.levels import DEBUG
 
 PROGRAM = 'test_project'
 DESCRIPTION = 'testing Console App'

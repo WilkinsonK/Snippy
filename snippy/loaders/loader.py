@@ -1,11 +1,11 @@
 from importlib import import_module
 
-from consoleapp.controller.settings import load_settings
-from consoleapp.controller.settings import preload_extentions
-from consoleapp.controller.settings import get_settings
+from snippy.loaders.settings import load_settings
+from snippy.loaders.settings import preload_extentions
+from snippy.loaders.settings import get_settings
 
-from consoleapp.controller.loggers import LoggerLoader
-from consoleapp.controller.commands import CommandLoader
+from snippy.loaders.loggers import LoggerLoader
+from snippy.loaders.commands import CommandLoader
 
 
 def __load_commands():

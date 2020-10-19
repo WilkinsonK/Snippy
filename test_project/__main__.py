@@ -1,10 +1,11 @@
 import sys
 import traceback
-sys.path.append('/Users/wilkinsonk/Documents/Development/Console App')
+sys.path.append('/Users/wilkinsonk/Documents/Development/Snippy')
 
-from consoleapp.controller.loader import load_app_settings
-from consoleapp.controller.loader import load_application
-from consoleapp.controller.loggers import get_app_logger
+from snippy import load_application
+from snippy import load_app_settings
+from snippy import get_app_logger
+
 
 def main(args):
     try:
