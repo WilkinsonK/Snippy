@@ -1,5 +1,4 @@
 from logging import StreamHandler
-from snippy.logger.levels import DEBUG
 
 PROGRAM = 'test_project'
 DESCRIPTION = 'testing Console App'
@@ -17,6 +16,6 @@ LOGGING = ({
     'HANDLERS': ({
         'TYPE': StreamHandler,
         'FORMAT': "[%(name)s] [%(levelname)s] %(message)s",
-        'LEVEL': DEBUG
+        'LEVEL': 'info'
     },)
 })

@@ -10,11 +10,17 @@ from logging import NullHandler
 from typing import Any
 from typing import Dict
 
-from snippy.exceptions.conf import ConfigAttrError
-from snippy.exceptions.conf import ConfigPathError
-from snippy.exceptions.conf import ConfigValueError
+import snippy.logger.levels as logger_levels
 
-from snippy.logger.levels import Level
+
+levels = {
+    'debug': logger_levels.DEBUG,
+    'info': logger_levels.INFO,
+    'warning': logger_levels.WARNING,
+    'error': logger_levels.ERROR,
+    'critical': logger_levels.CRITICAL,
+    'fatal': logger_levels.FATAL
+}
 
 
 class AppLogger(Logger):
@@ -34,7 +40,7 @@ class AppLogger(Logger):
     def __setup_handler(self, config: Dict[str, Any]):
         handler: Handler    = config.get('TYPE')
         format_: str        = config.get('FORMAT')
-        level: Level        = config.get('LEVEL')
+        level: str          = config.get('LEVEL')
         path: str           = config.get('PATH')
         mode: str           = config.get('MODE', 'w')
         encoding: str       = config.get('ENCODING', 'utf-8')
@@ -54,7 +60,8 @@ class AppLogger(Logger):
             fmt=format_, datefmt=datefmt, style=style, validate=validate
         )
 
-        handler.setLevel(level=level.value)
+        _level = levels[level]
+        handler.setLevel(level=_level.value)
         handler.setFormatter(fmt=formatter)
 
         self.handlers.append(handler)
@@ -62,11 +69,11 @@ class AppLogger(Logger):
 
     def __verify_logger_name(self, settings: Dict[str, Any]):
         if 'NAME' not in settings:
-            raise ConfigAttrError(
+            raise AttributeError(
                 "NAME missing from logger settings"
             )
         if not isinstance(settings['NAME'], str):
-            raise ConfigValueError(
+            raise ValueError(
                 "NAME in logger settings must be a string or bytes like object"
             )
         self.name = settings['NAME']
@@ -75,16 +82,16 @@ class AppLogger(Logger):
         logname = self.name
 
         if 'HANDLERS' not in settings:
-            raise ConfigAttrError(
+            raise AttributeError(
                 f"HANDLERS missing from {logname} settings"
             )
         handlers = settings['HANDLERS']
         if len(handlers) < 1:
-            raise ConfigAttrError(
+            raise AttributeError(
                 f"HANDLERS in {logname} has no configs"
             )
         if not isinstance(handlers, (list, tuple)):
-            raise ConfigValueError(
+            raise ValueError(
                 f"HANDLERS in {logname} is must either be a tuple or list object"
             )
 
@@ -98,7 +105,7 @@ class AppLogger(Logger):
     def __verify_type_config(self, hand: str, config: Dict[str, Any]):
         logname = self.name
         if 'TYPE' not in config:
-            raise ConfigAttrError(
+            raise AttributeError(
                 f"TYPE missing in {logname} HANDLERS[{hand}] config"
             )
         if issubclass(config['TYPE'], FileHandler):
@@ -109,50 +116,54 @@ class AppLogger(Logger):
     def __verify_encoding_config(self, hand: str, config: Dict[str, Any]):
         logname = self.name
         if 'ENCODING' in config and not isinstance(config['ENCODING'], str):
-            raise ConfigValueError(
+            raise ValueError(
                 f"ENCODING in {logname} HANDLERS[{hand}] must be a string"
             )
 
     def __verify_mode_config(self, hand: str, config: Dict[str, Any]):
         logname = self.name
         if not isinstance(config['MODE'], str):
-            raise ConfigValueError(
+            raise ValueError(
                 f"MODE in {logname} HANDLERS[{hand}] must be a string object"
             )
 
     def __verify_path_config(self, hand: str, config: Dict[str, Any]):
         logname = self.name
         if 'PATH' not in config:
-            raise ConfigAttrError(
+            raise AttributeError(
             f"PATH missing in {logname} HANDLERS[{hand}] config"
         )
         if not isinstance(config['PATH'], (str, bytes)):
-            raise ConfigValueError(
+            raise ValueError(
             f"PATH in {logname} HANDLERS[{hand}] must be a string object"
         )
         if not os.path.exists(config['PATH']):
-            raise ConfigPathError(
+            raise FileExistsError(
                 f"PATH in {logname} HANDLERS[{hand}] does not exist"
             )
 
     def __verify_format_config(self, hand: str, config: Dict[str, Any]):
         logname = self.name
         if 'FORMAT' not in config:
-            raise ConfigAttrError(
+            raise AttributeError(
                 f"FORMAT missing in {logname} HANDLERS[{hand}] config"
             )
         if not isinstance(config['FORMAT'], str):
-            raise ConfigValueError(
+            raise ValueError(
                 f"FORMAT in {logname} HANDLERS[{hand}] must be a string object"
             )
 
     def __verify_level_config(self, hand: str, config: Dict[str, Any]):
         logname = self.name
         if 'LEVEL' not in config:
-            raise ConfigAttrError(
+            raise AttributeError(
                 f"LEVEL missing in {logname} HANDLERS[{hand}] config"
             )
-        if not issubclass(config['LEVEL'], Level):
-            raise ConfigValueError(
-                f"LEVEL in {logname} HANDLERS[{hand}] must be a Level object"
+        if not isinstance(config['LEVEL'], str):
+            raise ValueError(
+                f"LEVEL in {logname} HANDLERS[{hand}] must be a string object"
             )
+        if config['LEVEL'] not in levels:
+            raise KeyError(
+                f"LEVEL in {logname} HANDLERS[{hand}] is not a valid level key"
+        )
