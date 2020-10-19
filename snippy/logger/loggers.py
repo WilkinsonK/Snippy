@@ -13,16 +13,6 @@ from typing import Dict
 import snippy.logger.levels as logger_levels
 
 
-levels = {
-    'debug': logger_levels.DEBUG,
-    'info': logger_levels.INFO,
-    'warning': logger_levels.WARNING,
-    'error': logger_levels.ERROR,
-    'critical': logger_levels.CRITICAL,
-    'fatal': logger_levels.FATAL
-}
-
-
 class AppLogger(Logger):
 
     handlers = [Handler]
@@ -60,7 +50,7 @@ class AppLogger(Logger):
             fmt=format_, datefmt=datefmt, style=style, validate=validate
         )
 
-        _level = levels[level]
+        _level = logger_levels[level]
         handler.setLevel(level=_level.value)
         handler.setFormatter(fmt=formatter)
 

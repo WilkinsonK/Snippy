@@ -27,3 +27,13 @@ class CRITICAL(Level):
 
 class FATAL(Level):
     value = logging.FATAL
+
+
+logger_levels = {
+    'debug': DEBUG,
+    'info': INFO,
+    'warning': WARNING,
+    'error': ERROR,
+    'critical': CRITICAL,
+    'fatal': FATAL
+}
