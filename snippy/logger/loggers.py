@@ -14,6 +14,7 @@ from snippy.logger.levels import logger_levels
 from snippy.validators.loggers import LoggerValidator
 
 
+
 class AppLogger(Logger, LoggerValidator):
 
     handlers: List[Handler]
