@@ -6,7 +6,10 @@ loaded_loggers = dict()
 
 
 def get_app_logger(logger_name: str) -> AppLogger:
-    return loaded_loggers[logger_name]
+    logger = loaded_loggers.get(logger_name)
+    if logger is None:
+        return loaded_loggers.get('main')
+    return logger
 
 
 class LoggerLoader(object):

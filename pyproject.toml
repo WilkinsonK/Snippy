@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "snippy"
+version = "0.0.0"
+description = "CLI sub-framework"
+authors = ["Keenan Wilkinson <keenanwilkinson@outlook.com>"]
+license = "BSD 3-Clause"
+
+[tool.poetry.dependencies]
+python = "3.6"
+
+[tool.poetry.dev-dependencies]
+hypothesis = "^5.37.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

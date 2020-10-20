@@ -12,7 +12,7 @@ COMMANDS = (
 )
 
 LOGGING = ({
-    'NAME': 'test_project',
+    'NAME': 'main',
     'HANDLERS': ({
         'TYPE': StreamHandler,
         'FORMAT': "[%(name)s] [%(levelname)s] %(message)s",
