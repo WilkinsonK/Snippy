@@ -50,8 +50,7 @@ class AppLogger(Logger):
             fmt=format_, datefmt=datefmt, style=style, validate=validate
         )
 
-        _level = logger_levels[level]
-        handler.setLevel(level=_level.value)
+        handler.setLevel(level=logger_levels[level].value)
         handler.setFormatter(fmt=formatter)
 
         self.handlers.append(handler)

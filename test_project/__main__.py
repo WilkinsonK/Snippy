@@ -1,6 +1,5 @@
 import sys
 import traceback
-sys.path.append('/Users/wilkinsonk/Documents/Development/Snippy')
 
 from snippy import load_application
 from snippy import load_app_settings
