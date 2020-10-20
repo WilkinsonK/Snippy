@@ -10,7 +10,7 @@ from logging import NullHandler
 from typing import Any
 from typing import Dict
 
-import snippy.logger.levels as logger_levels
+from snippy.logger.levels import logger_levels
 
 
 class AppLogger(Logger):
@@ -153,7 +153,7 @@ class AppLogger(Logger):
             raise ValueError(
                 f"LEVEL in {logname} HANDLERS[{hand}] must be a string object"
             )
-        if config['LEVEL'] not in levels:
+        if config['LEVEL'] not in logger_levels:
             raise KeyError(
                 f"LEVEL in {logname} HANDLERS[{hand}] is not a valid level key"
         )
