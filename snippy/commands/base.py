@@ -1,20 +1,24 @@
 from abc import ABCMeta, abstractmethod
-from typing import Dict, Tuple
+from typing import Any, Dict, List, Tuple
 
 
 from snippy.util import classname, dictionary
+from snippy.validators.commands import CommandValidator
 
 
-class AbstractCommand(metaclass=ABCMeta):
-    '''
-    Abstract class which BaseClass is derived from.
-    Handles the attributes of Command Objects
-    '''
+class CommandObject(object, metaclass=ABCMeta):
     parameters: Dict[Tuple[str] or str, Dict[str, str]] # Defines the arguments
     help: str                                           # Defines the help text
     name: str                                           # Define a custom name
     is_cached: bool                                     # Cache the command obj
     with_debug: bool                                    # Push debug messsages
+
+
+class AbstractCommand(CommandObject):
+    '''
+    Abstract class which BaseClass is derived from.
+    Handles the attributes of Command Objects
+    '''
 
     @property
     def help(self):
@@ -29,7 +33,7 @@ class AbstractCommand(metaclass=ABCMeta):
         return dictionary(self).get('name', classname(self).lower())
 
 
-class BaseCommand(AbstractCommand, metaclass=ABCMeta):
+class BaseCommand(AbstractCommand, CommandValidator):
     '''
     Abstract base class all Command Objects are derived from.
     '''
@@ -39,7 +43,7 @@ class BaseCommand(AbstractCommand, metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
-    def parse_arguments(self, argv):
+    def parse_arguments(self, argv: List[Any]):
         raise NotImplementedError
 
     @abstractmethod

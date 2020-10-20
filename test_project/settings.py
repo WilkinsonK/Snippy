@@ -16,6 +16,6 @@ LOGGING = ({
     'HANDLERS': ({
         'TYPE': StreamHandler,
         'FORMAT': "[%(name)s] [%(levelname)s] %(message)s",
-        'LEVEL': 'info'
+        'LEVEL': 'debug'
     },)
 })
