@@ -1,5 +1,6 @@
-poetry.lock
+*.lock
 .vscode
 .venv
 *.code-workspace
 __pycache__
+setup.py

@@ -1,45 +1,51 @@
 from abc import ABCMeta, abstractmethod
-from typing import Dict
+from typing import Any, Dict, List, Tuple
 
 
-class BaseCommand(metaclass=ABCMeta):
-    arguments: Dict[str, dict]
-    optionals: Dict[tuple, dict]
-    help: str
+from snippy.util import classname, dictionary
+from snippy.validators.commands import CommandValidator
 
-    def __getattr__(self, attr):
-        if attr not in self.__annotations__:
-            raise AttributeError(
-                f"Command object has no attribute '{attr}'"
-            )
-        self.__get_default_attribute(attr)
 
-    def __get_default_attribute(self, attr):
-        attr_type = self.__annotations__[attr]
-        default_values = {
-            bytes: b'',
-            str: '',
-            bool: False,
-            int: 0,
-            float: 0.00,
-            list: [],
-            dict: {},
-            tuple: ()
-        }
-        return default_values.get(attr_type, None)
+class CommandObject(object, metaclass=ABCMeta):
+    parameters: Dict[Tuple[str] or str, Dict[str, str]] # Defines the arguments
+    help: str                                           # Defines the help text
+    name: str                                           # Define a custom name
+    is_cached: bool                                     # Cache the command obj
+    with_debug: bool                                    # Push debug messsages
+
+
+class AbstractCommand(CommandObject):
+    '''
+    Abstract class which BaseClass is derived from.
+    Handles the attributes of Command Objects
+    '''
 
     @property
-    def _arguments(self):
-        return self.arguments
+    def help(self):
+        return dictionary(self).get('help', '')
 
     @property
-    def _optionals(self):
-        return self.optionals
+    def parameters(self):
+        return dictionary(self).get('parameters', dict())
 
-    @abstractmethod
-    def __init__(self, argv):
-        pass
+    @property
+    def name(self):
+        return dictionary(self).get('name', classname(self).lower())
+
+
+class BaseCommand(AbstractCommand, CommandValidator):
+    '''
+    Abstract base class all Command Objects are derived from.
+    '''
 
     @abstractmethod
     def execute(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def parse_arguments(self, argv: List[Any]):
+        raise NotImplementedError
+
+    @abstractmethod
+    def add_parameters(self, parser):
         raise NotImplementedError
