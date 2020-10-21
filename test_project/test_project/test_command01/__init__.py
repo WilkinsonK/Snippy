@@ -2,8 +2,10 @@ from snippy import BaseCommand
 
 
 class TestCommand01(BaseCommand):
+    name = 'queenvictoria'
+
     def execute(self):
-        pass
+        print("Off with their heads!!")
 
     def parse_arguments(self, argv: list):
         pass

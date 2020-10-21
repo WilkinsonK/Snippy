@@ -30,7 +30,11 @@ class AbstractCommand(CommandObject):
 
     @property
     def name(self):
-        return dictionary(self).get('name', classname(self).lower())
+        return dictionary(self).get('name', self.__name__.lower())
+
+    @classmethod
+    def _name(cls):
+        return dictionary(cls).get('name', cls.__qualname__.lower())
 
 
 class BaseCommand(AbstractCommand, CommandValidator):

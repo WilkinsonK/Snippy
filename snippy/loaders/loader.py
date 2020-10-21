@@ -8,13 +8,11 @@ from snippy.loaders.settings import SettingsLoader
 
 
 def __load_commands():
-    command_settings = get_app_settings(('COMMANDS', 'PROGRAM', 'PROJECT'))
-    CommandLoader(command_settings)
+    CommandLoader(get_app_settings(('COMMANDS', 'PROJECT')))
 
 
 def __load_loggers():
-    logger_settings = get_app_settings('LOGGING')
-    LoggerLoader(logger_settings)
+    LoggerLoader(get_app_settings('LOGGING'))
 
 
 def __load_extentions():
@@ -23,8 +21,7 @@ def __load_extentions():
 
 
 def load_app_settings(module):
-    settings_module = import_module(module)
-    SettingsLoader(settings_module)
+    SettingsLoader(import_module(module))
 
 
 def load_application():

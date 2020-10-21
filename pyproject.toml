@@ -9,9 +9,9 @@ license = "BSD 3-Clause"
 python = "3.9"
 
 [tool.poetry.dev-dependencies]
-hypothesis = "^5.37.3"
 flake8 = "^3.8.4"
 black = {version = "^20.8b1", allow-prereleases = true}
+pytest = "^6.1.1"
 
 
 [build-system]
