@@ -11,6 +11,10 @@ def get_app_logger(logger_name: str) -> AppLogger:
     return logger
 
 
+def get_app_loggers():
+    return loaded_loggers
+
+
 class LoggerLoader(object):
 
     def __new__(cls, settings: Tuple[Dict[str, Any]] or Dict[str, Any]):

@@ -12,7 +12,7 @@ from snippy.validators.settings import SettingsValidator
 loaded_settings = dict()
 
 
-def get_app_settings(settings: Iterable=None) -> dict:
+def get_app_settings(settings: Iterable or str=None) -> dict:
     '''
     Return the requested settings if specified in an iterable,
     otherwise return all loaded settings
