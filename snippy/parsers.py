@@ -1,7 +1,8 @@
-from argparse import ArgumentParser
 import argparse
+from argparse import ArgumentParser
 from typing import List
 
+from snippy.tools import debugger
 from snippy.loaders.commands import get_app_command
 from snippy.loaders.commands import CommandObject
 
@@ -14,7 +15,18 @@ class AppParser:
 
     def execute_commands(self):
         for c in self.commands:
-            print(c, self.commands[c])
+            self.execute_one_command(c, self.commands[c])
+
+    @debugger
+    def execute_one_command(self, command: CommandObject, args: list):
+        command_obj = command()
+        parser = ArgumentParser(
+            prog=command_obj.name, 
+            description=command_obj.description, 
+        )
+        command_obj._add_parameters(parser)
+        args = parser.parse_args(args)
+        command_obj.execute(args)
 
     def get_commands(self, argv):
         command_vars = self._find_multiple_commands(argv)

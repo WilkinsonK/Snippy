@@ -1,7 +1,7 @@
-from typing import Dict, Iterable, Tuple, List
+from typing import Dict, Tuple, List
 from importlib import import_module
 
-from snippy.commands.base import BaseCommand, CommandObject
+from snippy.commands import BaseCommand, CommandObject
 
 
 loaded_commands = dict()
@@ -12,7 +12,7 @@ def get_app_command(command: str) -> CommandObject:
     Returns a command if it exists in project package
     '''
     if command not in loaded_commands:
-        raise NameError(f"'{command}' not found")
+        raise NameError(f"command '{command}' not found")
     return loaded_commands[command]
 
 

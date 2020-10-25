@@ -6,14 +6,14 @@ def classname(obj: object) -> str:
     '''
     Return an object's class name
     '''
-    return obj.__class__.__qualname__
+    return obj.__class__.__name__
 
 
 def objname(obj: object) -> str:
     '''
     Returns an object's name
     '''
-    return obj.__qualname__
+    return obj.__name__
 
 
 def get_project_name() -> str:

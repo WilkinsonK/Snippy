@@ -4,7 +4,7 @@ import os
 from importlib import import_module
 from typing import Any, Dict, Iterable
 
-from snippy.util import get_project_name
+from snippy.tools import get_project_name
 from snippy.validators.settings import default_available_settings
 from snippy.validators.settings import SettingsValidator
 

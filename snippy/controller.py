@@ -1,9 +1,9 @@
 from traceback import format_exc
 
-from snippy.util import get_project_name
+from snippy.tools import get_project_name
 from snippy.loaders.loggers import get_app_logger
 from snippy.loaders.loader import AppLoader
-from snippy.parser.parsers import AppParser
+from snippy.parsers import AppParser
 
 
 project_name = get_project_name()

@@ -1,0 +1,49 @@
+from functools import wraps
+
+from snippy import get_app_logger
+from snippy.tools import objname
+from snippy.tools import get_project_name
+
+
+def _get_logger():
+    project_name = get_project_name()
+    return get_app_logger(project_name)
+
+
+def _format_message(func, variables: dict):
+    message = f"executing '{objname(func)}':"
+    for v in variables:
+        if v in ('debugger_logger', 'func'):
+            continue
+        if v == 'args':
+            message += '\n\targs:\n\t\t'
+            message += '\n\t\t'.join(
+                [str(a) for a in variables[v]]
+            )
+            continue
+        if v == 'kwargs':
+            message += '\n\tkwargs:\n\t\t'
+            message += '\n\t\t'.join([
+                f"{k}: {variables[v][k]}" for k in variables[v]]
+            )
+            continue
+        message += f"\n\t{v}: {variables[v]}"
+    return message
+
+
+def debugger(func):
+
+    @wraps(func)
+    def __inner_debugger(*args, **kwargs):
+        debugger_logger = _get_logger()
+        message = _format_message(func, locals())
+        try:
+            debugger_logger.debug(message)
+            result = func(*args, **kwargs)
+        except Exception as error:
+            debugger_logger.error(str(error))
+            raise RuntimeError
+        else:
+            debugger_logger.debug(f"{objname(func)} result:\n\t{result}")
+            return result
+    return __inner_debugger
