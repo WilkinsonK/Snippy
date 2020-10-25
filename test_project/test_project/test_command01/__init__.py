@@ -2,13 +2,10 @@ from snippy import BaseCommand
 
 
 class TestCommand01(BaseCommand):
-    name = 'queenvictoria'
+    parameters = {
+        ('integer1'): {'action': 'store', 'help': 'first integer argument'},
+        ('integer2'): {'action': 'store', 'help': 'second integer argument'}
+    }
 
-    def execute(self):
-        print("Off with their heads!!")
-
-    def parse_arguments(self, argv: list):
-        pass
-
-    def add_parameters(self, parser):
-        pass
+    def execute(self, args):
+        print(args)

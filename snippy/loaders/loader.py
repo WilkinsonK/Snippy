@@ -7,24 +7,26 @@ from snippy.loaders.commands import CommandLoader
 from snippy.loaders.settings import SettingsLoader
 
 
-def __load_commands():
-    CommandLoader(get_app_settings(('COMMANDS', 'PROJECT')))
+class AppLoader(object):
 
+    @staticmethod
+    def load_settings(module):
+        SettingsLoader(import_module(module))
 
-def __load_loggers():
-    LoggerLoader(get_app_settings('LOGGING'))
+    @staticmethod
+    def load_application():
+        AppLoader._load_extensions()
+        AppLoader._load_loggers()
+        AppLoader._load_commands()
 
+    @classmethod
+    def _load_loggers(cls):
+        LoggerLoader(get_app_settings('LOGGING'))
 
-def __load_extentions():
-    extentions_settings = get_app_settings('EXTENTIONS')
-    print(extentions_settings)
+    @classmethod
+    def _load_commands(cls):
+        CommandLoader(get_app_settings(('COMMANDS', 'PROJECT')))
 
-
-def load_app_settings(module):
-    SettingsLoader(import_module(module))
-
-
-def load_application():
-    __load_extentions()
-    __load_loggers()
-    __load_commands()
+    @classmethod
+    def _load_extensions(cls):
+        get_app_settings('EXTENSIONS')

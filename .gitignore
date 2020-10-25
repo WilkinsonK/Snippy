@@ -4,3 +4,4 @@
 *.code-workspace
 __pycache__
 setup.py
+.pytest_cache
