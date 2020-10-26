@@ -12,6 +12,9 @@ python = "3.9"
 flake8 = "^3.8.4"
 black = {version = "^20.8b1", allow-prereleases = true}
 pytest = "^6.1.1"
+setuptools = "^50.3.2"
+wheel = "^0.35.1"
+twine = "^3.2.0"
 
 
 [build-system]

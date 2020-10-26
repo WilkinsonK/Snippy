@@ -7,7 +7,7 @@ def main(argv=sys.argv):
     program = AppController('settings')
     try:
         program.start_application(argv)
-    except:
+    except Exception:
         program.raise_runtime()
 
 

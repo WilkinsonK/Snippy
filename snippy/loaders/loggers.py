@@ -6,16 +6,27 @@ loaded_loggers = dict()
 
 
 def get_app_logger(logger_name: str) -> AppLogger:
+    '''
+    Returns one loaded logger from application settings by NAME
+    attribute
+    '''
     if (logger := loaded_loggers.get(logger_name)) is None:
         return loaded_loggers.get('main')
     return logger
 
 
 def get_app_loggers():
+    '''
+    Returns all loaded loggers from applications in the form of a
+    dictionary with key/value pairs of NAME/AppLogger
+    '''
     return loaded_loggers
 
 
 class LoggerLoader(object):
+    '''
+    Creates and loads AppLogger objects from application settings
+    '''
 
     def __new__(cls, settings: Tuple[Dict[str, Any]] or Dict[str, Any]):
         loader_obj = super(LoggerLoader, cls).__new__(cls)
@@ -24,6 +35,9 @@ class LoggerLoader(object):
 
     @classmethod
     def load_loggers_from_settings(cls, settings):
+        '''
+        Builds loggers from settings file
+        '''
         settings = settings.get('LOGGING')
 
         if isinstance(settings, dict):

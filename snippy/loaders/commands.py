@@ -24,6 +24,10 @@ def get_app_commands() -> Dict[str, CommandObject]:
 
 
 class CommandLoader(object):
+    '''
+    Searches for commands from application settings.py source file
+    within commands directory
+    '''
 
     def __new__(cls, settings: Tuple[str] or List[str]):
         loader_obj = super(CommandLoader, cls).__new__(cls)

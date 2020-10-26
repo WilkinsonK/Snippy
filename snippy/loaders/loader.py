@@ -8,13 +8,23 @@ from snippy.loaders.settings import SettingsLoader
 
 
 class AppLoader(object):
+    '''
+    Central loading class. Utilizes the subsequent loaders
+    (LoggerLoader, CommandLoader, SettingsLoader, etc.) to fully
+    load objects from a project
+    '''
 
     @staticmethod
     def load_settings(module):
+        '''Loads the config file, 'settings.py' by default'''
         SettingsLoader(import_module(module))
 
     @staticmethod
     def load_application():
+        '''
+        After settings are loaded, loads the application and its
+        components
+        '''
         AppLoader._load_extensions()
         AppLoader._load_loggers()
         AppLoader._load_commands()

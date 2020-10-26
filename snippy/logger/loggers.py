@@ -16,6 +16,11 @@ from snippy.validators.loggers import LoggerValidator
 
 
 class AppLogger(Logger, LoggerValidator):
+    '''
+    Creates a logger object from builtin logging module with
+    modifications to automatically create a logger with handlers
+    and a format
+    '''
 
     handlers: List[Handler]
 

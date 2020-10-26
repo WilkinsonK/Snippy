@@ -2,6 +2,7 @@ import logging
 
 
 class Level:
+    '''Logging level object. Holds the integer value for a log level'''
     value: int
 
 

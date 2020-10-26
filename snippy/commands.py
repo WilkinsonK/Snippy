@@ -7,22 +7,20 @@ from snippy.validators.commands import CommandValidator
 
 
 class CommandObject(object, metaclass=ABCMeta):
+    '''
+    Defines the default attributes a command class object
+    has available to access/modify
+
+    This class is not meant to be directly instantiated
+    '''
+
     parameters: Dict[Tuple[str] or str, Dict[str, str]] # Defines the arguments
-    help: str                                           # Defines the help text
     name: str                                           # Define a custom name
     description: str                                    # Define a description
     is_cached: bool                                     # Cache the command obj
-    with_debug: bool                                    # Push debug messsages
 
-    def execute(self, args):
+    def execute(self, *args, **kwargs):
         raise NotImplementedError
-
-    def _add_parameters(self, parser: ArgumentParser):
-        for param in self.parameters:
-            if isinstance(param, str):
-                parser.add_argument(param, **self.parameters[param])
-            if isinstance(param, tuple):
-                parser.add_argument(*param, **self.parameters[param])
 
 
 class AbstractCommand(CommandObject):
@@ -36,12 +34,12 @@ class AbstractCommand(CommandObject):
         return dictionary(self).get('description', '')
 
     @property
-    def help(self):
-        return dictionary(self).get('help', '')
-
-    @property
     def parameters(self):
         return dictionary(self).get('parameters', dict())
+
+    @property
+    def is_cached(self):
+        return dictionary(self).get('is_cached', False)
 
     @property
     def name(self):
@@ -58,5 +56,5 @@ class BaseCommand(AbstractCommand, CommandValidator):
     '''
 
     @abstractmethod
-    def execute(self, args):
+    def execute(self, *args, **kwargs):
         raise NotImplementedError

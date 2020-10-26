@@ -16,13 +16,13 @@ def _format_message(func, variables: dict):
         if v in ('debugger_logger', 'func'):
             continue
         if v == 'args':
-            message += '\n\targs:\n\t\t'
+            message += f'\n\t{v}:\n\t\t'
             message += '\n\t\t'.join(
                 [str(a) for a in variables[v]]
             )
             continue
         if v == 'kwargs':
-            message += '\n\tkwargs:\n\t\t'
+            message += f'\n\t{v}:\n\t\t'
             message += '\n\t\t'.join([
                 f"{k}: {variables[v][k]}" for k in variables[v]]
             )
@@ -32,6 +32,9 @@ def _format_message(func, variables: dict):
 
 
 def debugger(func):
+    '''
+    Logs debugging messages on a function call
+    '''
 
     @wraps(func)
     def __inner_debugger(*args, **kwargs):
