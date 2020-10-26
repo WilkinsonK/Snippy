@@ -1,10 +1,9 @@
 import sys
-
 from snippy.core.controller import AppController
 
 
 def main(argv=sys.argv):
-    program = AppController('settings')
+    program = AppController('core_settings')
     try:
         program.start_application(argv)
     except Exception:

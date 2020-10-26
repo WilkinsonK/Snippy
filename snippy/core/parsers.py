@@ -5,12 +5,13 @@ from typing import List
 
 from snippy import get_app_logger
 
+from snippy.core.commands import CommandObject
+
+from snippy.loaders.commands import get_app_command
+
 from snippy.tools import debugger
 from snippy.tools import get_project_name
 from snippy.tools.names import get_project_name
-
-from snippy.loaders.commands import get_app_command
-from snippy.loaders.commands import CommandObject
 
 
 class AppParser:
