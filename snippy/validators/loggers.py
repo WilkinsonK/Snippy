@@ -4,8 +4,6 @@ from abc import ABC
 from typing import Dict, Any
 from logging import FileHandler
 
-from snippy.logger.levels import logger_levels
-
 
 class LoggerValidator(ABC):
 
@@ -50,7 +48,7 @@ class LoggerValidator(ABC):
             raise AttributeError(
                 f"TYPE missing in {logname} HANDLERS[{hand}] config"
             )
-        if issubclass(config['TYPE'], FileHandler):
+        if config['TYPE'] in ('file'):
             self._verify_path_config(hand, config)
             self._verify_mode_config(hand, config)
             self._verify_encoding_config(hand, config)
@@ -105,7 +103,3 @@ class LoggerValidator(ABC):
             raise ValueError(
                 f"LEVEL in {logname} HANDLERS[{hand}] must be a string object"
             )
-        if config['LEVEL'] not in logger_levels:
-            raise KeyError(
-                f"LEVEL in {logname} HANDLERS[{hand}] is not a valid level key"
-        )

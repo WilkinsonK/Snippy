@@ -1,0 +1,51 @@
+[settings.py]
+
+PROGRAM = '%(projname)s'
+DESCRIPTION = '%(description)s'
+HELP = '%(help)s'
+
+COMMANDS = (
+    'snippy.commands',
+)
+
+LOGGING = ({
+    'NAME': '%(projname)s',
+    'HANDLERS': ({
+        'TYPE': 'stream',
+        'FORMAT': "[%(name)s] [%(levelname)s] %(message)s",
+        'LEVEL': 'info'
+    },)
+})
+
+[__main__.py]
+# %(projname)s cli application
+# created on %(initdate)s using snippy.py %(snippyversion)s
+
+import sys
+from snippy.core.controller import AppController
+
+
+def main(argv=sys.argv):
+    program = AppController('settings')
+    try:
+        program.start_application(argv)
+    except Exception:
+        program.raise_runtime()
+
+
+if __name__ == '__main__':
+    main()
+
+[command]
+from snippy import BaseCommand
+
+
+class %(command)s(BaseCommand):
+    description = '%(description)s'
+    parameters = {
+        # Add your parameters here
+    }
+
+    def execute(self, argv):
+        # Write your code here
+        pass

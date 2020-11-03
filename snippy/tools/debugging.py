@@ -16,14 +16,14 @@ def _format_message(func, variables: dict):
         if v in ('debugger_logger', 'func'):
             continue
         if v == 'args':
-            message += f'\n\t{v}:\n\t\t'
-            message += '\n\t\t'.join(
+            message += f'\n\t{v}:\n\t  '
+            message += '\n\t  '.join(
                 [str(a) for a in variables[v]]
             )
             continue
-        if v == 'kwargs':
-            message += f'\n\t{v}:\n\t\t'
-            message += '\n\t\t'.join([
+        if v == 'kwargs' and variables['kwargs'] != {}:
+            message += f'\n\t{v}:\n\t  '
+            message += '\n\t  '.join([
                 f"{k}: {variables[v][k]}" for k in variables[v]]
             )
             continue

@@ -20,8 +20,7 @@ def get_project_name() -> str:
     '''
     Returns the name of the project from execution path
     '''
-    path = sys.argv[0]
-    path = path.replace('\\', '/')
+    path = sys.argv[0].replace('\\', '/')
     if not isdir(path):
         return dirname(path).split('/')[-1]
     return abspath(path).split('/')[-1]

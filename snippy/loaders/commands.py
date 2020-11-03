@@ -29,34 +29,28 @@ class CommandLoader(object):
     within commands directory
     '''
 
-    def __new__(cls, settings: Tuple[str] or List[str]):
-        loader_obj = super(CommandLoader, cls).__new__(cls)
-        loader_obj.load_commands_from_settings(settings)
-        return loader_obj
+    def __init__(self, settings: Tuple[str] or List[str]):
+        self.load_commands_from_settings(settings)
 
-    @classmethod
-    def load_commands_from_settings(cls, settings):
+    def load_commands_from_settings(self, settings):
         comm = settings.get('COMMANDS')
         root = settings.get('PROJECT')
 
         if isinstance(comm, str):
-            cls.load_from_one_module(root, comm)
+            self.load_from_one_module(root, comm)
         if isinstance(comm, tuple):
-            cls.load_multiple_modules(root, comm)
+            self.load_multiple_modules(root, comm)
 
-    @classmethod
-    def load_multiple_modules(cls, root: str, commands: tuple):
+    def load_multiple_modules(self, root: str, commands: tuple):
         for command in commands:
-            cls.load_from_one_module(root, command)
+            self.load_from_one_module(root, command)
 
-    @classmethod
-    def load_from_one_module(cls, root: str, command: str):
-        command_mod = cls.__import_command_module(root, command)
-        for c in cls.__get_commands(command_mod):
+    def load_from_one_module(self, root: str, command: str):
+        command_mod = self._import_command_module(command)
+        for c in self._get_commands(command_mod):
             loaded_commands.update({c._name(): c})
 
-    @classmethod
-    def __get_commands(cls, module) -> CommandObject:
+    def _get_commands(self, module) -> CommandObject:
         module_dict = module.__dict__
         commands = list()
         for i in module_dict:
@@ -70,7 +64,5 @@ class CommandLoader(object):
                 commands.append(module_dict[i])
         return commands
 
-    @classmethod
-    def __import_command_module(cls, root: str, command: str):
-        module = '.'.join([root, command])
-        return import_module(module)
+    def _import_command_module(self, command: str):
+        return import_module(command)
