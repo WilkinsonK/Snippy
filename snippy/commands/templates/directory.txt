@@ -1,0 +1,9 @@
+[project dir]
+%(projname)s
+%(projname)s/commands
+%(projname)s/__main__.py
+%(projname)s/settings.py
+
+[command dir]
+%(commandname)s
+%(commandname)s/__init__.py

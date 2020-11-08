@@ -4,7 +4,7 @@ from snippy.tools import get_project_name
 from snippy.tools.debugging import debugger
 from snippy.loaders.loggers import get_app_logger
 from snippy.loaders.loader import AppLoader
-from snippy.parsers import AppParser
+from snippy.core.parsers import AppParser
 
 
 project_name = get_project_name()

@@ -25,18 +25,6 @@ class AppLoader(object):
         After settings are loaded, loads the application and its
         components
         '''
-        AppLoader._load_extensions()
-        AppLoader._load_loggers()
-        AppLoader._load_commands()
-
-    @classmethod
-    def _load_loggers(cls):
-        LoggerLoader(get_app_settings('LOGGING'))
-
-    @classmethod
-    def _load_commands(cls):
-        CommandLoader(get_app_settings(('COMMANDS', 'PROJECT')))
-
-    @classmethod
-    def _load_extensions(cls):
         get_app_settings('EXTENSIONS')
+        LoggerLoader(get_app_settings('LOGGING'))
+        CommandLoader(get_app_settings(('COMMANDS', 'PROJECT')))

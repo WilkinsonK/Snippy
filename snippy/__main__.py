@@ -1,6 +1,5 @@
 import sys
-
-from snippy.controller import AppController
+from snippy.core.controller import AppController
 
 
 def main(argv=sys.argv):

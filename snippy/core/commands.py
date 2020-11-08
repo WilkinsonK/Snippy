@@ -1,9 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from typing import Dict, Tuple
-from argparse import ArgumentParser
 
 from snippy.tools import objname, classname, dictionary
-from snippy.validators.commands import CommandValidator
 
 
 class CommandObject(object, metaclass=ABCMeta):
@@ -19,7 +17,7 @@ class CommandObject(object, metaclass=ABCMeta):
     description: str                                    # Define a description
     is_cached: bool                                     # Cache the command obj
 
-    def execute(self, *args, **kwargs):
+    def execute(self, argv):
         raise NotImplementedError
 
 
@@ -50,11 +48,11 @@ class AbstractCommand(CommandObject):
         return dictionary(cls).get('name', objname(cls).lower())
 
 
-class BaseCommand(AbstractCommand, CommandValidator):
+class BaseCommand(AbstractCommand):
     '''
     Abstract base class all Command Objects are derived from.
     '''
 
     @abstractmethod
-    def execute(self, *args, **kwargs):
+    def execute(self, argv):
         raise NotImplementedError

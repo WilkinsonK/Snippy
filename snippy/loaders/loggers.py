@@ -1,6 +1,6 @@
 from typing import Dict, Tuple, Any
 
-from snippy.logger.loggers import AppLogger
+from snippy.core.loggers import AppLogger
 
 loaded_loggers = dict()
 
@@ -28,30 +28,24 @@ class LoggerLoader(object):
     Creates and loads AppLogger objects from application settings
     '''
 
-    def __new__(cls, settings: Tuple[Dict[str, Any]] or Dict[str, Any]):
-        loader_obj = super(LoggerLoader, cls).__new__(cls)
-        loader_obj.load_loggers_from_settings(settings)
-        return loader_obj
+    def __init__(self, settings: Tuple[Dict[str, Any]] or Dict[str, Any]):
+        self.load_loggers_from_settings(settings)
 
-    @classmethod
-    def load_loggers_from_settings(cls, settings):
+    def load_loggers_from_settings(self, settings):
         '''
         Builds loggers from settings file
         '''
-        settings = settings.get('LOGGING')
 
         if isinstance(settings, dict):
-            cls.load_one_logger(settings)
+            self.load_one_logger(settings)
         if isinstance(settings, tuple):
-            cls.load_multiple_loggers(settings)
+            self.load_multiple_loggers(settings)
 
-    @classmethod
-    def load_multiple_loggers(cls, logger_config: Tuple[Dict[str, Any]]):
+    def load_multiple_loggers(self, logger_config: Tuple[Dict[str, Any]]):
         for logger in logger_config:
-            cls.load_one_logger(logger)
+            self.load_one_logger(logger)
 
-    @classmethod
-    def load_one_logger(cls, logger_config: Dict[str, Any]):
+    def load_one_logger(self, logger_config: Dict[str, Any]):
         logger_obj = AppLogger(logger_config)
         logger_name = logger_config['NAME']
         loaded_loggers[logger_name] = logger_obj

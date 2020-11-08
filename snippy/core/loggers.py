@@ -1,18 +1,21 @@
 import os
 
-from logging import Logger
-from logging import Formatter
-from logging import Handler
-from logging import FileHandler
-from logging import StreamHandler
-from logging import NullHandler
+from logging import Logger, Formatter
+from logging import DEBUG, INFO, WARNING, ERROR, CRITICAL
+from logging import Handler, StreamHandler, FileHandler, NullHandler
 
-from typing import Any, List
-from typing import Dict
+from typing import Any, List, Dict
 
-from snippy.logger.levels import logger_levels
 from snippy.validators.loggers import LoggerValidator
 
+
+logger_levels = {
+    'debug': DEBUG,
+    'info': INFO,
+    'warning': WARNING,
+    'error': ERROR,
+    'critical': CRITICAL,
+}
 
 
 class AppLogger(Logger, LoggerValidator):
@@ -28,13 +31,11 @@ class AppLogger(Logger, LoggerValidator):
         self._verify_logger_name(logger_settings)
         self._verify_logger_handlers(logger_settings)
         super().__init__(self.name)
-        self.__setup_logger(logger_settings)
 
-    def __setup_logger(self, settings: Dict[str, Any]):
-        for handler_config in settings['HANDLERS']:
-            self.__setup_handler(handler_config)
+        for handler_config in logger_settings['HANDLERS']:
+            self._setup_handler(handler_config)
 
-    def __setup_handler(self, config: Dict[str, Any]):
+    def _setup_handler(self, config: Dict[str, Any]):
         handler: Handler    = config.get('TYPE')
         format_: str        = config.get('FORMAT')
         level: str          = config.get('LEVEL')
@@ -46,18 +47,18 @@ class AppLogger(Logger, LoggerValidator):
         style: str          = config.get('STYLE', '%')
         validate: bool      = config.get('VALIDATE', True)
 
-        if issubclass(handler, FileHandler):
-            handler = handler(path, mode=mode, encoding=encoding)
-        elif issubclass(handler, StreamHandler):
-            handler = handler(stream=stream)
-        elif issubclass(handler, NullHandler):
-            handler = handler()
+        if handler in ('file', 'file_handler'):
+            handler = FileHandler(path, mode=mode, encoding=encoding)
+        elif handler in ('stream', 'stream_handler'):
+            handler = StreamHandler(stream=stream)
+        elif handler in ('null', 'null_handler'):
+            handler = NullHandler()
 
         formatter = Formatter(
             fmt=format_, datefmt=datefmt, style=style, validate=validate
         )
 
-        handler.setLevel(level=logger_levels[level].value)
+        handler.setLevel(level=logger_levels[level])
         handler.setFormatter(fmt=formatter)
 
         self.handlers.append(handler)
