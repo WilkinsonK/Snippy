@@ -1,6 +1,5 @@
 from abc import ABCMeta, abstractmethod
 from typing import Dict, Tuple
-from argparse import ArgumentParser
 
 from snippy.tools import objname, classname, dictionary
 

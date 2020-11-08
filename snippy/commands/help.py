@@ -95,4 +95,4 @@ class HelpCommand(BaseCommand):
     def _check_type(self, base_strf: str, type_: Any):
         if type_ == None:
             return base_strf
-        return ('%s ' % objname(type_)) + base_strf
+        return ('<%s> ' % objname(type_)) + base_strf

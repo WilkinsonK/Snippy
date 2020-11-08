@@ -44,7 +44,7 @@ class AppParser:
 
     @classmethod
     def _add_parameters(cls, command: CommandObject):
-        parser = ArgumentParser()
+        parser = ArgumentParser(prog=command.name)
 
         for param in command.parameters:
             if isinstance(param, str):
