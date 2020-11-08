@@ -5,8 +5,7 @@ HELP = 'seamlessly build command line interfaces'
 
 COMMANDS = (
     'snippy.commands.help',
-    'snippy.commands.init',
-    'snippy.commands.test'
+    'snippy.commands.init'
 )
 
 LOGGING = ({
