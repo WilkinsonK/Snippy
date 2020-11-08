@@ -6,7 +6,6 @@ default_available_settings = {
     'PROGRAM': str,
     'DESCRIPTION': str,
     'HELP': str,
-    'EXTENSIONS': tuple,
     'COMMANDS': tuple,
     'LOGGING': object
 }
