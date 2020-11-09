@@ -1,6 +1,13 @@
 # Welcome to **Snippy Core**
-#### Originally designed as a thin layer over the argparse library, Snippy provides
-#### a slightly more *rigid* structure for building command line interfaces.
+#### Originally designed as a thin layer over the argparse library, Snippy provides a slightly more *rigid* structure for building command line interfaces.
+
+</br>
+</br>
+* <a href="https://github.com/WilkinsonK/Snippy/blob/testing/README.md#out-of-the-box">Out of the Box</a>
+</br>
+* <a href="https://github.com/WilkinsonK/Snippy/blob/testing/README.md#your-first-project">Your First Project</a>
+</br>
+* <a href="https://github.com/WilkinsonK/Snippy/blob/testing/README.md#command-objects">Command Objects</a>
 </br>
 </br>
 
