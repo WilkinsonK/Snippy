@@ -141,6 +141,8 @@ class MyAppCommand(BaseCommand):
 
 ```
 >>> python -m [proj_name] mycommand "I just sent my application to the ministry of silly walks"
+
+I just sent my application to the ministry of silly walks
 ```
 
 * Available Attributes:
