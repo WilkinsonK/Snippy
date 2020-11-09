@@ -93,7 +93,7 @@ The key thing to pay attention to will be the COMMANDS tuple.\
     but this command was added for ease of development.
 
 4. <u>Start building</u>. By including the import path of your new\
-command in your settings, you're all set! By default, a new command\
+command in settings.py, you're all set! By default, a new command\
 object is identified in snippy by a lowercased version of it's class name.
 </br>
 </br>
