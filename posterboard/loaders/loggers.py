@@ -1,6 +1,6 @@
 from typing import Dict, Tuple, Any
 
-from snippy.core.loggers import AppLogger
+from posterboard.core.loggers import AppLogger
 
 loaded_loggers = dict()
 

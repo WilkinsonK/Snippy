@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from typing import Dict, Tuple
 
-from snippy.tools import objname, classname, dictionary
+from posterboard.tools import objname, classname, dictionary
 
 
 class CommandObject(object, metaclass=ABCMeta):

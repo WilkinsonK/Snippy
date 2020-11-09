@@ -1,5 +1,5 @@
 import sys
-from snippy.core.controller import AppController
+from posterboard.core.controller import AppController
 
 
 def main(argv=sys.argv):

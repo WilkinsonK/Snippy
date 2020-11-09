@@ -59,7 +59,7 @@ def write_proj_file(argv, file_name: str, files: Dict[str, dict]):
         'description': argv.description,
         'help': argv.help_text,
         'initdate': argv.initdate,
-        'snippyversion': argv.snippyversion,
+        'PBversion': argv.PBversion,
         'name': '%(name)s',
         'levelname': '%(levelname)s',
         'message': '%(message)s'

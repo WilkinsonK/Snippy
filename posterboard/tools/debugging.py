@@ -1,8 +1,8 @@
 from functools import wraps
 
-from snippy import get_app_logger
-from snippy.tools import objname
-from snippy.tools import get_project_name
+from posterboard import get_app_logger
+from posterboard.tools import objname
+from posterboard.tools import get_project_name
 
 
 def _get_logger():

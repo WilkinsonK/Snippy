@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "snippy"
+name = "posterboard"
 version = "0.0.0"
 description = "CLI sub-framework"
 authors = ["Keenan Wilkinson <keenanwilkinson@outlook.com>"]

@@ -2,16 +2,16 @@ from os.path import dirname
 from os import path, listdir
 from datetime import datetime
 
-from snippy import get_version
-from snippy.core.commands import BaseCommand
-from snippy.tools import get_file_contents
-from snippy.tools import parse_template_files
-from snippy.tools import make_proj_directory
+from posterboard import get_version
+from posterboard.core.commands import BaseCommand
+from posterboard.tools import get_file_contents
+from posterboard.tools import parse_template_files
+from posterboard.tools import make_proj_directory
 
 
 class InitCommand(BaseCommand):
     name = 'init'
-    description = 'create a new snippy project'
+    description = 'create a new posterboard project'
     parameters = {
         ('proj_name'): {'help': 'provide project name', 'type':str},
         ('-s', '--skip-subdir'): {
@@ -27,7 +27,7 @@ class InitCommand(BaseCommand):
         self.argv.description = input('description: ')
         self.argv.help_text = input('help text: ')
         self.argv.initdate = datetime.now().strftime('%Y-%m-%d')
-        self.argv.snippyversion = get_version()
+        self.argv.PBversion = get_version()
 
         self.files = parse_template_files({
             c:get_file_contents(

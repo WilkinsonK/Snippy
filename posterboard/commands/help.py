@@ -1,11 +1,11 @@
 from typing import Any, Dict
 
-from snippy.core.commands import BaseCommand
-from snippy.loaders.commands import get_app_commands
-from snippy.loaders.commands import get_app_command
-from snippy.loaders.settings import get_app_settings
-from snippy.tools import get_project_name
-from snippy.tools import objname
+from posterboard.core.commands import BaseCommand
+from posterboard.loaders.commands import get_app_commands
+from posterboard.loaders.commands import get_app_command
+from posterboard.loaders.settings import get_app_settings
+from posterboard.tools import get_project_name
+from posterboard.tools import objname
 
 
 class HelpCommand(BaseCommand):

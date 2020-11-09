@@ -6,7 +6,7 @@ from logging import Handler, StreamHandler, FileHandler, NullHandler
 
 from typing import Any, List, Dict
 
-from snippy.validators.loggers import LoggerValidator
+from posterboard.validators.loggers import LoggerValidator
 
 
 logger_levels = {

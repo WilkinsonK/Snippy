@@ -1,10 +1,10 @@
 from os import path, listdir
 from os.path import dirname
-from snippy.tools import make_cmd_directory
+from posterboard.tools import make_cmd_directory
 
-from snippy.core.commands import BaseCommand
-from snippy.tools import get_file_contents
-from snippy.tools import parse_template_files
+from posterboard.core.commands import BaseCommand
+from posterboard.tools import get_file_contents
+from posterboard.tools import parse_template_files
 
 
 class AddCommand(BaseCommand):

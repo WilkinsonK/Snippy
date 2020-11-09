@@ -1,10 +1,10 @@
 from importlib import import_module
 
-from snippy.loaders.settings import get_app_settings
+from posterboard.loaders.settings import get_app_settings
 
-from snippy.loaders.loggers import LoggerLoader
-from snippy.loaders.commands import CommandLoader
-from snippy.loaders.settings import SettingsLoader
+from posterboard.loaders.loggers import LoggerLoader
+from posterboard.loaders.commands import CommandLoader
+from posterboard.loaders.settings import SettingsLoader
 
 
 class AppLoader(object):

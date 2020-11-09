@@ -1,10 +1,10 @@
 from traceback import format_exc
 
-from snippy.tools import get_project_name
-from snippy.tools.debugging import debugger
-from snippy.loaders.loggers import get_app_logger
-from snippy.loaders.loader import AppLoader
-from snippy.core.parsers import AppParser
+from posterboard.tools import get_project_name
+from posterboard.tools.debugging import debugger
+from posterboard.loaders.loggers import get_app_logger
+from posterboard.loaders.loader import AppLoader
+from posterboard.core.parsers import AppParser
 
 
 project_name = get_project_name()
@@ -12,7 +12,7 @@ project_name = get_project_name()
 
 class AppController:
     '''
-    Central control for Snippy. Handles starting of the application,
+    Central control for posterboard. Handles starting of the application,
     parsing arguments, logging exceptions, etc.
     '''
 

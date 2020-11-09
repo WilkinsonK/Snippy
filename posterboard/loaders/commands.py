@@ -1,7 +1,7 @@
 from typing import Dict, Tuple, List
 from importlib import import_module
 
-from snippy.core.commands import BaseCommand, CommandObject
+from posterboard.core.commands import BaseCommand, CommandObject
 
 
 loaded_commands = dict()
