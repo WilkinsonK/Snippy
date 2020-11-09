@@ -4,7 +4,6 @@
 </br>
 </br>
 
-___
 ## **Out of the Box**
    Snippy provides two commands to help you get started.
 
@@ -60,7 +59,6 @@ ___
     | use snippy help [command] for more info
 </br>
 
-___
 ## **Your First Project**
 <p>
    Getting started with your first project is quick and easy. To begin, open
@@ -93,7 +91,6 @@ object is identified in snippy by a lowercased version of it's class name.
 </br>
 </br>
 
-___
 ## **Command Objects**
 <p>
    Command Objects are the bread and butter of Snippy. Rather, this is what
