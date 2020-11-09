@@ -5,8 +5,7 @@ HELP = 'seamlessly build command line interfaces'
 
 COMMANDS = (
     'posterboard.commands.help',
-    'posterboard.commands.init',
-    'posterboard.commands.test'
+    'posterboard.commands.init'
 )
 
 LOGGING = ({
